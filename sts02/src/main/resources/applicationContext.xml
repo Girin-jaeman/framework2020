@@ -2,13 +2,89 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource" 
+	class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/class03?useUnicode=true&amp;characterEncoding=UTF-8"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
 	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean id="dept01Dao1" class="com.bit.model.Dept01DaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="dept01Dao2" class="com.bit.model.Dept01Dao2Impl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+
+</beans>
+
+
+
+
+
+<!-- 	<bean id="remote" class="com.bit.service.Remote3" scope="singleton">
+		<property name="map">
+			<props>
+				<prop key="key1">value1</prop>
+				<prop key="key2">value2</prop>
+				<prop key="key3">value3</prop>
+				<prop key="key4">value4</prop>
+			</props>
+		</property>
+	</bean> -->
+
+
+	<!-- 		<map> 맵 방식 1
+				<entry key="key1">
+					<value>val1</value>
+				</entry>
+				<entry key="key2">
+					<value>val2</value>
+				</entry>
+				<entry key="key3">
+					<value>val3</value>
+				</entry>
+			</map> -->
+
+<!-- 	<bean id="remote" class="com.bit.service.Remote3">
+		<property name="alist">
+			<list>
+				<value>1</value>
+				<value>12</value>
+				<value>123</value>
+				<value>1234</value>
+			</list>
+		</property>
+	</bean> -->
+
+<!-- 	<bean id="remote" class="com.bit.service.Remote3">
+		<property name="arr">
+			<array>
+				<value>a</value>
+				<value>ab</value>
+				<value>abc</value>
+				<value>abcd</value>
+			</array>
+		</property>
+	</bean> -->
+
+<!-- 	<bean id="remote" class="com.bit.service.Remote2">
+		<property name="msg" value="abcdefg"></property>
+		<property name="num" value="1000"></property>
+		<property name="tf" value="true"></property>
+ 	</bean> -->
+
+<!-- 	
 	<bean id="tv" class="com.bit.service.Tv"></bean>
 	<bean id="radio" class="com.bit.service.Radio"></bean>
 
-	<bean id="remote" class="com.bit.service.Remote">
-		<property name="remote" ref="radio"></property>
-	</bean>
-	
-
-</beans>
+	<bean id="remote" class="com.bit.service.Remote">  t생성자일경우!에는 이렇게
+		<constructor-arg ref="radio"></constructor-arg>
+	</bean>DI!!!!!
+	 -->

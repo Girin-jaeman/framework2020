@@ -3,9 +3,9 @@ package com.bit.service;
 public class Remote {
 	Machine remote;
 	
-//	public Remote(Machine machine) {
-//		remote=machine;
-//	}
+	public Remote(Machine machine) {
+		remote=machine;
+	}
 	
 	
 	public Remote() {
